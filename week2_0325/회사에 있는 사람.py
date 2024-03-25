@@ -2,15 +2,14 @@ import sys
 
 input = sys.stdin.readline
 n = int(input())
-d = {}
+arr = []
 
 for _ in range(n):
     name, eol = input().rstrip().split()
     if eol == 'enter':
-        d[name] = 1
+        arr.append(name)
     if eol == 'leave':
-        d[name] = 0
+        arr.remove(name)
 
-for key, value in sorted(d.items(), reverse=True):
-    if value == 1:
-        print(key)
+arr.sort(reverse=True)
+print(*arr, sep="\n")
