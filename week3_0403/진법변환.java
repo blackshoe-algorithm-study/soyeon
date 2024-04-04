@@ -21,11 +21,11 @@ public class 진법변환 {
 
         int sum = 0;
          for (int i=0; i<N.length(); i++) {
-             if (Character.isDigit(N.charAt(i))) {
-                 sum += (N.charAt(i) - '0') * Math.pow(B, N.length() - i - 1);
-             } else {
-                 sum += map.get(N.charAt(i)) * Math.pow(B, N.length() - i - 1);
-             }
+             char c = N.charAt(i);
+             int pow = (int) Math.pow(B, N.length() - i - 1);
+
+             if (Character.isDigit(N.charAt(i))) sum += (c - '0') * pow;
+             else sum += map.get(c) * pow;
          }
 
         System.out.println(sum);
