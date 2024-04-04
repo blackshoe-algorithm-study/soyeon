@@ -12,15 +12,25 @@ public class 빗물 {
         int h = Integer.parseInt(st.nextToken());
         int w = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[w];
+        int[] height = new int[w];
+        int[] leftMaxHeight = new int[w];
+        int[] totalMaxHeight = new int[w];
 
         st = new StringTokenizer(br.readLine());
+        int leftMax = Integer.MIN_VALUE;
         for (int i=0; i<w; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            height[i] = Integer.parseInt(st.nextToken());
+            leftMax = Math.max(leftMax, height[i]);
+            leftMaxHeight[i] = leftMax;
         }
 
-        Arrays.sort(arr);
+        int rightMax = Integer.MIN_VALUE;
+        for (int i=w-1; i>=0; i--) {
+            rightMax = Math.max(rightMax, height[i]);
+            totalMaxHeight[i] = Math.min(rightMax, leftMaxHeight[i]);
+            answer += totalMaxHeight[i] - height[i];
+        }
 
-
+        System.out.println(answer);
     }
 }
