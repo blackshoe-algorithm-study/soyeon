@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class 퇴사 {
-    static List<Integer> answers = new ArrayList<>();
+    static int maxProfit = 0;
     public static void main(String[] args) throws IOException {
         // i는 1부터 n까지, Ti+i-1까지는 상담 못함(Ti+i부터 상담 가능), Ti+i < n
         // 완탐해서 배열에 수익 모두 넣고 max로 출력하기
@@ -22,14 +22,27 @@ public class 퇴사 {
 
         recursion(1, n, days, 0);
 
-        System.out.println(Collections.max(answers));
+        System.out.println(maxProfit);
     }
 
     public static void recursion(int day, int n, int[][] days, int income) {
-        if (day > n || day+days[day][0]-1 > n) {
-            answers.add(income);
+        // 퇴사 날짜를 넘어가면 종료
+        if (day > n + 1) {
             return;
         }
-        recursion(day+days[day][0], n, days, income + days[day][1]);
+
+        // 최대 수익 갱신
+        if (day == n + 1) {
+            maxProfit = Math.max(maxProfit, income);
+            return;
+        }
+
+        // 현재 상담을 선택한 경우
+        if (day + days[day][0] - 1 <= n) { // 상담 기간이 퇴사 전까지인 경우
+            recursion(day + days[day][0], n, days, income + days[day][1]);
+        }
+
+        // 현재 상담을 선택하지 않은 경우
+        recursion(day + 1, n, days, income);
     }
 }

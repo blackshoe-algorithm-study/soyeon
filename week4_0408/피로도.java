@@ -21,9 +21,8 @@ public class 피로도 {
             } else {
                 if (tired - c >= 0) tired -= c;
                 else {
-                    while (tired > 0 && c > 0) {
-                        tired -= 1;
-                        c--;
+                    while (tired > 0) {
+                        tired--;
                     }
                 }
             }
