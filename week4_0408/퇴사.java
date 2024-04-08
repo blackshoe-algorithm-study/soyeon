@@ -27,12 +27,7 @@ public class 퇴사 {
 
     public static void recursion(int day, int n, int[][] days, int income) {
         // 퇴사 날짜를 넘어가면 종료
-        if (day > n + 1) {
-            return;
-        }
-
-        // 최대 수익 갱신
-        if (day == n + 1) {
+        if (day > n) {
             maxProfit = Math.max(maxProfit, income);
             return;
         }
