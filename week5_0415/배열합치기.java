@@ -8,7 +8,7 @@ public class 배열합치기 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = null;
-        Map<Integer, Integer> map = new TreeMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
 
         st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
