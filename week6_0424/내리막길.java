@@ -7,7 +7,7 @@ public class 내리막길 {
     static int m;
     static int n;
     static int[][] map;
-    static boolean[][] visited;
+    static int[][] dp;
     static int cnt = 0;
     static int[] dx = {0, 0, -1, 1};
     static int[] dy = {-1, 1, 0, 0};
@@ -21,7 +21,10 @@ public class 내리막길 {
         n = Integer.parseInt(st.nextToken());
 
         map = new int[m][n];
-        visited = new boolean[m][n];
+        dp = new int[m][n];
+
+        for (int[] row : dp) Arrays.fill(row, -1);
+        dp[m-1][n-1] = 1;
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
@@ -31,26 +34,30 @@ public class 내리막길 {
 
         dfs(0, 0);
 
-        System.out.print(cnt);
+        System.out.print(dp[0][0]);
     }
 
     static void dfs(int x, int y) {
-        if (x == n - 1 && y == m - 1) {
-            cnt++;
-            for (boolean[] row : visited)
-                Arrays.fill(row, false);
-            return;
-        }
+        if (x == n - 1 && y == m - 1) return;
 
-        visited[y][x] = true;
+        if (dp[y][x] != -1) return;
+
+        dp[y][x] = 0;
+
         for (int i = 0; i < 4; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
             if (nx >= n || ny >= m || nx < 0 || ny < 0) continue;
 
-            if (map[y][x] > map[ny][nx])
-                dfs(nx, ny);
+            if (map[y][x] > map[ny][nx]) {
+                if (dp[ny][nx] != -1)
+                    dp[y][x] += dp[ny][nx];
+                else {
+                    dfs(nx, ny);
+                    dp[y][x] += dp[ny][nx];
+                }
+            }
         }
     }
 }
