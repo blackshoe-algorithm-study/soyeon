@@ -15,7 +15,7 @@ public class 절댓값힙 {
 
         @Override
         public int compareTo(Node other) {
-            if (this.abs == other.abs) return Integer.compare(this.num, other.num);
+            if (this.abs == other.abs) return Integer.compare(this.num, other.num); // this.num - other.num
             return Integer.compare(this.abs, other.abs);
         }
     }
