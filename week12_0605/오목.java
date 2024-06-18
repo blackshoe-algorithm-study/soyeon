@@ -83,7 +83,7 @@ public class 오목 {
         return false;
     }
 
-    static boolean inRange(int num) {
-        return num <
+    static boolean inRange(int a, int b, int c, int d, int e, int f) {
+        return a < 19 && b < 19 && c < 19 && d < 19 && e < 19 && f < 19 && a >= 0 && b >= 0 && c >= 0 && d >= 0 && e >= 0 && f >= 0;
     }
 }
